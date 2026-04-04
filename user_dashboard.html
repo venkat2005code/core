@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | CORE</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="dashboard-page">
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <button id="themeToggle" class="icon-btn"
+            style="background: var(--dash-surface); border: 1px solid var(--dash-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); color: var(--dash-text);">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="dirToggle" class="icon-btn"
+            style="background: var(--dash-surface); border: 1px solid var(--dash-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); color: var(--dash-text);">
+            <i class="fa-solid fa-globe"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar Trigger (Mobile) -->
+    <button id="sidebarToggle" class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                <img src="assets/images/logo.png" alt="CORE">
+                <span class="brand-name">CORE</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="user_dashboard.html" class="active"><i class="fa-solid fa-gauge-high"></i> <span>User
+                    Dashboard</span></a>
+            <a href="admin_dashboard.html"><i class="fa-solid fa-shield-halved"></i> <span>Admin Dashboard</span></a>
+            <a href="projects.html"><i class="fa-solid fa-folder-open"></i> <span>Projects</span></a>
+            <a href="reports.html"><i class="fa-solid fa-chart-line"></i> <span>Reports</span></a>
+            <a href="documents.html"><i class="fa-solid fa-file-lines"></i> <span>Documents</span></a>
+            <a href="settings.html"><i class="fa-solid fa-gear"></i> <span>Settings</span></a>
+        </nav>
+        <div class="sidebar-footer">
+
+            <a href="login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Log out</span></a>
+        </div>
+    </aside>
+    <main class="dashboard-main">
+        <h1>Client Dashboard</h1>
+        <p class="subtitle">Overview of your orders, projects, and activity</p>
+
+        <div class="infographic-grid">
+            <!-- 1. KPI Cards -->
+            <div class="infographic span-12">
+                <h3>Key metrics</h3>
+                <div class="kpi-row">
+                    <div class="kpi-card">
+                        <div class="value">24</div>
+                        <div class="label">Active orders</div>
+                        <div class="change positive"><i class="fa-solid fa-arrow-up"></i> 12% vs last month</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value">$847K</div>
+                        <div class="label">YTD spend</div>
+                        <div class="change positive"><i class="fa-solid fa-arrow-up"></i> 8% vs last year</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value">18</div>
+                        <div class="label">Open projects</div>
+                        <div class="change negative"><i class="fa-solid fa-arrow-down"></i> 2 from last week</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="value">94%</div>
+                        <div class="label">On-time delivery</div>
+                        <div class="change positive"><i class="fa-solid fa-arrow-up"></i> 3% improvement</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Orders trend (line chart) -->
+            <div class="infographic span-8">
+                <h3>Order volume trend</h3>
+                <div class="chart-wrap" style="height: 180px;"><canvas id="chartOrders"></canvas></div>
+            </div>
+
+            <!-- 3. Order status (doughnut) -->
+            <div class="infographic span-4">
+                <h3>Order status mix</h3>
+                <div class="chart-wrap" style="height: 180px;"><canvas id="chartStatus"></canvas></div>
+            </div>
+
+            <!-- 4. Monthly spend (bar chart) -->
+            <div class="infographic span-6">
+                <h3>Monthly spend (last 6 months)</h3>
+                <div class="chart-wrap" style="height: 180px;"><canvas id="chartSpend"></canvas></div>
+            </div>
+
+            <!-- 5. Project progress bars -->
+            <div class="infographic span-6">
+                <h3>Top projects progress</h3>
+                <div class="progress-list">
+                    <div class="progress-item">
+                        <label>PRJ-2041 — Enclosure assembly</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 78%; height: 8px;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <label>PRJ-2038 — Valve housing batch</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 55%; height: 8px;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <label>PRJ-2035 — Custom tooling</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 92%; height: 8px;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <label>PRJ-2032 — Prototype run</label>
+                        <div class="progress-bar">
+                            <div class="fill" style="width: 40%; height: 8px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Recent orders table -->
+            <div class="infographic span-6">
+                <h3>Recent orders</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PO-2044</td>
+                            <td>H-200 Piston</td>
+                            <td>150</td>
+                            <td><span style="color: var(--dash-success);">Shipped</span></td>
+                        </tr>
+                        <tr>
+                            <td>#PO-2043</td>
+                            <td>V-Class Valve</td>
+                            <td>80</td>
+                            <td><span style="color: var(--dash-warning);">In production</span></td>
+                        </tr>
+                        <tr>
+                            <td>#PO-2042</td>
+                            <td>C-750 Pump</td>
+                            <td>45</td>
+                            <td><span style="color: var(--dash-primary);">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>#PO-2041</td>
+                            <td>Logic Module X</td>
+                            <td>200</td>
+                            <td><span style="color: var(--dash-success);">Delivered</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 7. Quota gauge -->
+            <div class="infographic span-6">
+                <h3>Contract quota used</h3>
+                <div class="gauge-wrap">
+                    <div style="text-align: center;">
+                        <div class="gauge-value" id="gaugeVal">67%</div>
+                        <div style="font-size: 0.875rem; color: var(--dash-muted); margin-top: 4px;">of annual
+                            commitment</div>
+                    </div>
+                </div>
+                <div class="progress-bar" style="margin-top: 16px;">
+                    <div class="fill"
+                        style="width: 67%; height: 8px; background: linear-gradient(90deg, var(--dash-primary), var(--dash-accent)); border-radius: 4px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Quick stats grid -->
+            <div class="infographic span-6">
+                <h3>Quick stats</h3>
+                <div class="stat-mini">
+                    <div class="item">
+                        <div class="icon blue"><i class="fa-solid fa-truck"></i></div>
+                        <div>
+                            <div class="num">7</div>
+                            <div class="lbl">In transit</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon cyan"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <div class="num">4.2d</div>
+                            <div class="lbl">Avg. lead time</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon blue"><i class="fa-solid fa-file-signature"></i></div>
+                        <div>
+                            <div class="num">12</div>
+                            <div class="lbl">Pending quotes</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon cyan"><i class="fa-solid fa-check-double"></i></div>
+                        <div>
+                            <div class="num">156</div>
+                            <div class="lbl">Completed YTD</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Category spend (horizontal bar) -->
+            <div class="infographic span-6">
+                <h3>Spend by category</h3>
+                <div class="chart-wrap" style="height: 180px;"><canvas id="chartCategory"></canvas></div>
+            </div>
+
+            <!-- 10. Recent activity -->
+            <div class="infographic span-6">
+                <h3>Recent activity</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-dot blue"></span>
+                        <div><strong>PO-2044</strong> shipped — ETA Mar 18</div>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-dot green"></span>
+                        <div><strong>Quote #Q-882</strong> approved for $24.5K</div>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-dot amber"></span>
+                        <div><strong>PRJ-2038</strong> awaiting your approval</div>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-dot blue"></span>
+                        <div><strong>Invoice INV-1203</strong> ready for download</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            const opts = { responsive: true, maintainAspectRatio: false };
+            const grid = { color: 'rgba(255,255,255,0.06)' };
+            const ticks = { color: '#64748b', font: { size: 11 } };
+
+            new Chart(document.getElementById('chartOrders'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Orders',
+                        data: [18, 22, 19, 28, 24, 26],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59,130,246,0.15)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: { ...opts, scales: { x: { grid, ticks } }, y: { grid, ticks }, plugins: { legend: { display: false } } }
+            });
+
+            new Chart(document.getElementById('chartStatus'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['In production', 'Shipped', 'Pending', 'Delivered'],
+                    datasets: [{ data: [8, 6, 5, 5], backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#00e5ff'], borderColor: '#111827', borderWidth: 2 }]
+                },
+                options: { ...opts, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', padding: 12 } } } }
+            });
+
+            new Chart(document.getElementById('chartSpend'), {
+                type: 'bar',
+                data: {
+                    labels: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                    datasets: [{ label: 'Spend ($K)', data: [112, 128, 145, 138, 152, 172], backgroundColor: 'rgba(0,229,255,0.5)', borderColor: '#00e5ff', borderWidth: 1 }]
+                },
+                options: { ...opts, scales: { x: { grid, ticks } }, y: { grid, ticks }, plugins: { legend: { display: false } } }
+            });
+
+            new Chart(document.getElementById('chartCategory'), {
+                type: 'bar',
+                data: {
+                    labels: ['Hydraulics', 'Valves', 'Pumps', 'Controllers', 'Other'],
+                    datasets: [{ label: 'Spend', data: [85, 62, 48, 35, 28], backgroundColor: ['#3b82f6', '#00e5ff', '#10b981', '#f59e0b', '#64748b'] }]
+                },
+                options: { ...opts, indexAxis: 'y', scales: { x: { grid, ticks } }, y: { grid, ticks }, plugins: { legend: { display: false } } }
+            });
+        })();
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

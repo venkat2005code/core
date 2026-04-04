@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE | Document Vault</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="dashboard-page">
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <button id="themeToggle" class="icon-btn" style="background: var(--clr-surface); border: 1px solid var(--clr-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: var(--shadow-premium); color: var(--clr-text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="dirToggle" class="icon-btn" style="background: var(--clr-surface); border: 1px solid var(--clr-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: var(--shadow-premium); color: var(--clr-text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-globe"></i>
+        </button>
+    </div>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                <img src="assets/images/logo.png" alt="CORE">
+                <span class="brand-name">CORE</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="user_dashboard.html"><i class="fa-solid fa-house"></i> Dashboard Overview</a></li>
+                <li><a href="projects.html"><i class="fa-solid fa-briefcase"></i> Projects / Orders</a></li>
+                <li><a href="products.html"><i class="fa-solid fa-box"></i> Products</a></li>
+                <li><a href="reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
+                <li><a href="documents.html" class="active"><i class="fa-solid fa-file-alt"></i> Documents</a></li>
+                <li><a href="settings.html"><i class="fa-solid fa-cog"></i> Settings</a></li>
+                <li><a href="logout.html"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <h1>Document Vault</h1>
+
+        <div class="grid grid-cols-3 mt-4">
+            <div class="card">
+                <i class="fa-solid fa-file-pdf" style="font-size: 2rem; color: #ef4444;"></i>
+                <h4 class="mt-4">Quality Certs</h4>
+                <p style="font-size: 0.8rem;">Updated 2 days ago</p>
+                <a href="#" class="btn btn-secondary mt-2">Download</a>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-file-excel" style="font-size: 2rem; color: #22c55e;"></i>
+                <h4 class="mt-4">Inventory Spreadsheet</h4>
+                <p style="font-size: 0.8rem;">Updated 5 days ago</p>
+                <a href="#" class="btn btn-secondary mt-2">Download</a>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-file-word" style="font-size: 2rem; color: #3b82f6;"></i>
+                <h4 class="mt-4">Project Specs</h4>
+                <p style="font-size: 0.8rem;">Updated today</p>
+                <a href="#" class="btn btn-secondary mt-2">Download</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

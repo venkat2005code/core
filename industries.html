@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE | Industries Served</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="CORE Logo"
+                    style="height: 40px; width: auto; vertical-align: middle; margin-right: 8px;">
+                CORE
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li class="nav-item">
+                        <a href="#">Home <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem;"></i></a>
+                        <div class="dropdown">
+                            <a href="index.html">Industrial Hero</a>
+                            <a href="index2.html">Machinery Split</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="products.html">Products</a></li>
+                    <li class="nav-item"><a href="industries.html" class="active">Industries</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <a href="#">Dashboards <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem;"></i></a>
+                        <div class="dropdown">
+                            <a href="user_dashboard.html">User Dashboard</a>
+                            <a href="admin_dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="login.html" class="nav-btn nav-signin">Sign In</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-btn nav-signup">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-btn" id="dirToggle" title="Toggle RTL/LTR">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                <button class="icon-btn mobile-toggle" id="mobileToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Introduction -->
+        <section class="hero"
+            style="min-height: 40vh; padding: 80px 0; background: linear-gradient(var(--clr-overlay), var(--clr-overlay)), url('assets/images/freepik__modern-industrial-manufacturing-facility-exterior-__4064.png') center/cover;">
+            <div class="container text-center">
+                <h1 style="margin-bottom: 16px;">Powering Global Industries</h1>
+                <p style="font-size: 1.125rem; max-width: 600px; margin: 0 auto;">Delivering specialized manufacturing
+                    solutions tailored to the strict compliance and extreme performance requirements of every sector we
+                    serve.</p>
+            </div>
+        </section>
+
+        <!-- Industries Served Grid -->
+        <section class="section">
+            <div class="container">
+                <div class="text-center mb-8">
+                    <span class="hero-subtitle" style="font-size: 0.875rem;">Sectors</span>
+                    <h2>Industries We Serve</h2>
+                </div>
+
+                <div class="grid grid-cols-3">
+                    <div class="card p-0">
+                        <div class="card-img-wrapper" style="margin: 0;">
+                            <img src="assets/images/freepik__advanced-smart-manufacturing-factory-with-digital-__4065.png"
+                                alt="Aerospace">
+                        </div>
+                        <div style="padding: 24px;">
+                            <i class="fa-solid fa-plane-departure"
+                                style="font-size: 2rem; color: var(--clr-primary); margin-bottom: 16px; display: block;"></i>
+                            <h4 style="margin: 0 0 8px 0;">Aerospace & Defense</h4>
+                            <p style="font-size: 0.9rem;">Lightweighting components, extreme temperature alloys, and
+                                AS9100 certified production.</p>
+                        </div>
+                    </div>
+                    <div class="card p-0">
+                        <div class="card-img-wrapper" style="margin: 0;">
+                            <img src="assets/images/freepik__close-up-of-industrial-mechanical-components-preci__4063.png"
+                                alt="Medical">
+                        </div>
+                        <div style="padding: 24px;">
+                            <i class="fa-solid fa-heart-pulse"
+                                style="font-size: 2rem; color: var(--clr-primary); margin-bottom: 16px; display: block;"></i>
+                            <h4 style="margin: 0 0 8px 0;">Medical Devices</h4>
+                            <p style="font-size: 0.9rem;">ISO 13485 compliant micro-machining, surgical instruments, and
+                                cleanroom assembly.</p>
+                        </div>
+                    </div>
+                    <div class="card p-0">
+                        <div class="card-img-wrapper" style="margin: 0;">
+                            <img src="assets/images/freepik__automated-factory-production-line-with-robotic-arm__4060.png"
+                                alt="Automotive">
+                        </div>
+                        <div style="padding: 24px;">
+                            <i class="fa-solid fa-car-side"
+                                style="font-size: 2rem; color: var(--clr-primary); margin-bottom: 16px; display: block;"></i>
+                            <h4 style="margin: 0 0 8px 0;">Automotive & EV</h4>
+                            <p style="font-size: 0.9rem;">Battery enclosures, drivetrain components, and high-volume
+                                automated stamping.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Advantages -->
+        <section class="section bg-surface">
+            <div class="container">
+                <div class="grid grid-cols-2 items-center" style="gap: 48px;">
+                    <div class="section-visual">
+                        <img src="assets/images/freepik__advanced-smart-manufacturing-factory-with-digital-__4065.png"
+                            alt="Industrial Technology" style="border-radius: 12px; box-shadow: var(--shadow-lg);">
+                    </div>
+                    <div>
+                        <span class="hero-subtitle" style="font-size: 0.875rem;">Our Advantage</span>
+                        <h2>Advanced Technology Integration</h2>
+                        <div style="margin-top: 24px;">
+                            <div style="margin-bottom: 24px;">
+                                <h4 style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-check"
+                                        style="color: var(--clr-primary);"></i> Smart Factory Ecosystem</h4>
+                                <p style="padding-left: 28px; font-size: 0.95rem;">Real-time IoT monitoring across all
+                                    machinery ensures predictive maintenance and zero unplanned downtime.</p>
+                            </div>
+                            <div style="margin-bottom: 24px;">
+                                <h4 style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-check"
+                                        style="color: var(--clr-primary);"></i> AI-Driven Quality Control</h4>
+                                <p style="padding-left: 28px; font-size: 0.95rem;">Computer vision systems inspect every
+                                    component at micron-levels, eliminating human error in Q&A.</p>
+                            </div>
+                            <div>
+                                <h4 style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-check"
+                                        style="color: var(--clr-primary);"></i> Additive Manufacturing Lab</h4>
+                                <p style="padding-left: 28px; font-size: 0.95rem;">Industrial 3D printing capabilities
+                                    for rapid prototyping and complex geometry production.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance Matrix -->
+        <section class="section">
+            <div class="container">
+                <div class="text-center mb-10">
+                    <span class="hero-subtitle">Standards</span>
+                    <h2>Compliance Matrix</h2>
+                    <p>Meeting the most rigorous global standards for safety and precision.</p>
+                </div>
+                <div class="grid grid-cols-4">
+                    <div class="card card-minimal">
+                        <h1 style="color: var(--clr-primary); font-size: 1.5rem; margin-bottom: 12px;">AS9100D</h1>
+                        <p style="font-size: 0.85rem;">Aerospace Quality Management System (AQMS) standard.</p>
+                    </div>
+                    <div class="card card-minimal">
+                        <h1 style="color: var(--clr-electric); font-size: 1.5rem; margin-bottom: 12px;">ISO 13485</h1>
+                        <p style="font-size: 0.85rem;">Quality management specifically for the medical device industry.
+                        </p>
+                    </div>
+                    <div class="card card-minimal">
+                        <h1 style="color: #10b981; font-size: 1.5rem; margin-bottom: 12px;">IATF 16949</h1>
+                        <p style="font-size: 0.85rem;">Quality systems for the global automotive supply chain.</p>
+                    </div>
+                    <div class="card card-minimal">
+                        <h1 style="color: var(--clr-accent); font-size: 1.5rem; margin-bottom: 12px;">ITAR</h1>
+                        <p style="font-size: 0.85rem;">International Traffic in Arms Regulations compliance for defense.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry-Specific Roadmap -->
+        <section class="section bg-surface">
+            <div class="container text-center">
+                <span class="hero-subtitle">The Future</span>
+                <h2 class="mb-10">Strategic Sector Roadmap</h2>
+                <div class="grid grid-cols-2" style="gap: 40px; text-align: left;">
+                    <div class="preview-card"
+                        style="border: 1px solid var(--clr-border); padding: 32px; border-radius: 12px;">
+                        <span style="font-size: 0.75rem; color: var(--clr-primary); font-weight: 700;">2026-2027</span>
+                        <h4 style="margin: 12px 0;">Hyper-Automated EV Hubs</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;">Expansion of dedicated lines for solid-state
+                            battery enclosures and high-strength aluminum frames.</p>
+                    </div>
+                    <div class="preview-card"
+                        style="border: 1px solid var(--clr-border); padding: 32px; border-radius: 12px;">
+                        <span style="font-size: 0.75rem; color: var(--clr-electric); font-weight: 700;">2027-2028</span>
+                        <h4 style="margin: 12px 0;">Nex-Gen Medical Fab</h4>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;">Launching ISO Class 5 cleanrooms for complex
+                            robotic surgical instrument assembly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section text-center">
+            <div class="container" style="max-width: 800px;">
+                <h2 class="mb-4">Discuss Your Industry Requirements</h2>
+                <p class="mb-4">Speak with an industry-specific engineering specialist to determine the best
+                    manufacturing approach for your product.</p>
+                <a href="contact.html" class="btn btn-primary" style="font-size: 1.125rem; padding: 16px 32px;">Schedule
+                    Strategy Call</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-cols-4 footer-top">
+                <div class="footer-col" style="grid-column: span 1;">
+                    <a href="index.html" class="logo mb-4">
+                        <img src="assets/images/logo.png" alt="CORE Logo"
+                            style="height: 40px; width: auto; vertical-align: middle; margin-right: 8px;">
+                        CORE
+                    </a>
+                    <p>Engineered for excellence. CORE delivers premium industrial manufacturing solutions with
+                        uncompromising quality.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Company</a></li>
+                        <li><a href="industries.html">Industries Served</a></li>
+                        <li><a href="products.html">Featured Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Manufacturing</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">CNC Machining</a></li>
+                        <li><a href="#">Sheet Metal Fabrication</a></li>
+                        <li><a href="#">Injection Molding</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="width: 20px; color: var(--clr-primary);"></i> 100
+                            Industrial Pkwy</li>
+                        <li style="margin-top: 12px;"><i class="fa-solid fa-phone"
+                                style="width: 20px; color: var(--clr-primary);"></i> +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CORE Industries. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

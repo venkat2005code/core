@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE | Projects & Orders</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="dashboard-page">
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <button id="themeToggle" class="icon-btn" style="background: var(--clr-surface); border: 1px solid var(--clr-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: var(--shadow-premium); color: var(--clr-text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="dirToggle" class="icon-btn" style="background: var(--clr-surface); border: 1px solid var(--clr-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: var(--shadow-premium); color: var(--clr-text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-globe"></i>
+        </button>
+    </div>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html"><img src="assets/images/logo.png" alt="CORE"></a>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="user_dashboard.html"><i class="fa-solid fa-house"></i> Dashboard Overview</a></li>
+                <li><a href="projects.html" class="active"><i class="fa-solid fa-briefcase"></i> Projects / Orders</a>
+                </li>
+                <li><a href="products.html"><i class="fa-solid fa-box"></i> Products</a></li>
+                <li><a href="reports.html"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
+                <li><a href="documents.html"><i class="fa-solid fa-file-alt"></i> Documents</a></li>
+                <li><a href="settings.html"><i class="fa-solid fa-cog"></i> Settings</a></li>
+                <li><a href="logout.html"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <div class="flex justify-between items-center mb-8">
+            <h1>Projects & Orders</h1>
+            <button class="btn btn-primary">New Project</button>
+        </div>
+
+        <section class="card-section">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Project ID</th>
+                            <th>Status</th>
+                            <th>Progress</th>
+                            <th>Due Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#PRJ-001</td>
+                            <td><span class="status in-progress">In Progress</span></td>
+                            <td>
+                                <div
+                                    style="width: 100%; background: var(--clr-surface-light); height: 8px; border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 65%; background: var(--clr-primary); height: 100%;"></div>
+                                </div>
+                            </td>
+                            <td>2026-05-15</td>
+                            <td><a href="#" class="btn btn-secondary"
+                                    style="padding: 4px 12px; font-size: 0.75rem;">Manage</a></td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-4521</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td>
+                                <div
+                                    style="width: 100%; background: var(--clr-surface-light); height: 8px; border-radius: 4px; overflow: hidden;">
+                                    <div style="width: 20%; background: var(--clr-accent); height: 100%;"></div>
+                                </div>
+                            </td>
+                            <td>2026-04-10</td>
+                            <td><a href="#" class="btn btn-secondary"
+                                    style="padding: 4px 12px; font-size: 0.75rem;">Manage</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

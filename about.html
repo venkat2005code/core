@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE | About Us</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="CORE Logo"
+                    style="height: 40px; width: auto; vertical-align: middle; margin-right: 8px;">
+                CORE
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li class="nav-item">
+                        <a href="#">Home <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem;"></i></a>
+                        <div class="dropdown">
+                            <a href="index.html">Industrial Hero</a>
+                            <a href="index2.html">Machinery Split</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="products.html">Products</a></li>
+                    <li class="nav-item"><a href="industries.html">Industries</a></li>
+                    <li class="nav-item"><a href="about.html" class="active">About</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                    <li class="nav-item">
+                        <a href="#">Dashboards <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem;"></i></a>
+                        <div class="dropdown">
+                            <a href="user_dashboard.html">User Dashboard</a>
+                            <a href="admin_dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="login.html" class="nav-btn nav-signin">Sign In</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-btn nav-signup">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-btn" id="dirToggle" title="Toggle RTL/LTR">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                <button class="icon-btn mobile-toggle" id="mobileToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Introduction -->
+        <section class="hero"
+            style="background: linear-gradient(var(--clr-overlay), var(--clr-overlay)), url('assets/images/freepik__modern-manufacturing-factory-interior-robotic-arms__4058.png'); background-size: cover; background-position: center; min-height: 50vh; padding: 120px 0;">
+            <div class="container">
+                <div class="grid grid-cols-2 items-center" style="gap: 64px;">
+                    <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                        <span class="hero-subtitle">Our Heritage</span>
+                        <h1 class="mb-4">Forging the Future Since 1982</h1>
+                        <p style="font-size: 1.1rem; margin-bottom: 24px;">CORE began as a small machine shop with a
+                            singular focus on precision. Today, we operate a global network of smart facilities,
+                            providing end-to-end manufacturing solutions for the world's most demanding industries.</p>
+                        <p>Our commitment remains unchanged: uncompromising quality, relentless innovation, and a
+                            dedication to powering human progress through superior industrial engineering.</p>
+                    </div>
+                    <div class="hero-visual">
+                        <img src="assets/images/freepik__modern-manufacturing-factory-interior-synchronized__4059.png"
+                            alt="Factory Vintage to Modern">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission and Vision -->
+        <section class="section bg-surface">
+            <div class="container">
+                <div class="grid grid-cols-2" style="gap: 48px;">
+                    <div class="card p-0" style="border: none;">
+                        <div
+                            style="background: var(--clr-primary); padding: 48px; border-radius: var(--border-radius); color: white; height: 100%;">
+                            <i class="fa-solid fa-bullseye" style="font-size: 3rem; margin-bottom: 24px;"></i>
+                            <h2 style="color: white;">Our Mission</h2>
+                            <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">To deliver absolute precision at
+                                scale. We partner with innovators to transform complex blueprints into flawless physical
+                                realities, driving progress in aerospace, medical, and energy sectors.</p>
+                        </div>
+                    </div>
+                    <div class="card p-0" style="border: none;">
+                        <div
+                            style="background: var(--clr-bg); border: 1px solid var(--clr-border); padding: 48px; border-radius: var(--border-radius); height: 100%;">
+                            <i class="fa-solid fa-eye"
+                                style="font-size: 3rem; color: var(--clr-primary); margin-bottom: 24px;"></i>
+                            <h2>Our Vision</h2>
+                            <p style="font-size: 1.1rem;">To build the definitive smart-manufacturing ecosystem where
+                                human expertise and AI-driven robotics converge, setting the global standard for
+                                industrial quality and sustainable production.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Corporate Values -->
+        <section class="section">
+            <div class="container">
+                <div class="text-center mb-10">
+                    <span class="hero-subtitle">Principles</span>
+                    <h2>Our Corporate Values</h2>
+                </div>
+                <div class="grid grid-cols-3">
+                    <div class="card text-center">
+                        <i class="fa-solid fa-lightbulb"
+                            style="font-size: 2.5rem; color: var(--clr-primary); margin-bottom: 20px;"></i>
+                        <h4>Innovation</h4>
+                        <p style="font-size: 0.9rem;">We relentlessly pursue the latest in AI, robotics, and material
+                            science to redefine what's possible in manufacturing.</p>
+                    </div>
+                    <div class="card text-center">
+                        <i class="fa-solid fa-handshake"
+                            style="font-size: 2.5rem; color: var(--clr-electric); margin-bottom: 20px;"></i>
+                        <h4>Integrity</h4>
+                        <p style="font-size: 0.9rem;">Our word is our bond. We maintain absolute transparency and
+                            honesty in every client partnership and project.</p>
+                    </div>
+                    <div class="card text-center">
+                        <i class="fa-solid fa-earth-americas"
+                            style="font-size: 2.5rem; color: #10b981; margin-bottom: 20px;"></i>
+                        <h4>Impact</h4>
+                        <p style="font-size: 0.9rem;">We build components that power critical systems, ensuring safety,
+                            reliability, and positive global progress.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company History Timeline -->
+        <section class="section">
+            <div class="container">
+                <div class="text-center mb-8">
+                    <span class="hero-subtitle">Evolution</span>
+                    <h2>A History of Innovation</h2>
+                </div>
+
+                <div
+                    style="position: relative; max-width: 800px; margin: 0 auto; padding-left: 24px; border-left: 2px solid var(--clr-border);">
+                    <div style="margin-bottom: 40px; position: relative;">
+                        <div
+                            style="position: absolute; left: -31px; top: 0; width: 16px; height: 16px; background: var(--clr-primary); border: 2px solid var(--clr-bg); border-radius: 50%;">
+                        </div>
+                        <span
+                            style="color: var(--clr-primary); font-weight: 700; font-family: var(--font-heading);">1982</span>
+                        <h4 style="margin: 8px 0;">Foundation</h4>
+                        <p>Established first facility specializing in custom tooling and milling.</p>
+                    </div>
+                    <div style="margin-bottom: 40px; position: relative;">
+                        <div
+                            style="position: absolute; left: -31px; top: 0; width: 16px; height: 16px; background: var(--clr-primary); border: 2px solid var(--clr-bg); border-radius: 50%;">
+                        </div>
+                        <span
+                            style="color: var(--clr-primary); font-weight: 700; font-family: var(--font-heading);">1998</span>
+                        <h4 style="margin: 8px 0;">Aerospace Expansion</h4>
+                        <p>Achieved AS9100 certification and opened dedicated aerospace manufacturing wing.</p>
+                    </div>
+                    <div style="margin-bottom: 40px; position: relative;">
+                        <div
+                            style="position: absolute; left: -31px; top: 0; width: 16px; height: 16px; background: var(--clr-primary); border: 2px solid var(--clr-bg); border-radius: 50%;">
+                        </div>
+                        <span
+                            style="color: var(--clr-primary); font-weight: 700; font-family: var(--font-heading);">2015</span>
+                        <h4 style="margin: 8px 0;">Automation Integration</h4>
+                        <p>Deployed first fully automated robotic assembly line, increasing output by 300%.</p>
+                    </div>
+                    <div style="position: relative;">
+                        <div
+                            style="position: absolute; left: -31px; top: 0; width: 16px; height: 16px; background: var(--clr-primary); border: 2px solid var(--clr-bg); border-radius: 50%;">
+                        </div>
+                        <span
+                            style="color: var(--clr-primary); font-weight: 700; font-family: var(--font-heading);">Present</span>
+                        <h4 style="margin: 8px 0;">Global Smart Network</h4>
+                        <p>Operating interconnected smart facilities powered by digital twin technology across 3
+                            continents.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="section bg-surface text-center">
+            <div class="container">
+                <span class="hero-subtitle">Standards</span>
+                <h2 class="mb-8">Certifications & Compliance</h2>
+                <div class="grid grid-cols-4" style="gap: 32px;">
+                    <div class="card-minimal">
+                        <i class="fa-solid fa-file-shield"
+                            style="font-size: 2.5rem; color: var(--clr-text-secondary); margin-bottom: 16px;"></i>
+                        <h4 style="margin-bottom: 4px;">ISO 9001:2015</h4>
+                        <span style="font-size: 0.8rem; color: var(--clr-text-secondary);">Quality Management</span>
+                    </div>
+                    <div class="card-minimal">
+                        <i class="fa-solid fa-file-shield"
+                            style="font-size: 2.5rem; color: var(--clr-text-secondary); margin-bottom: 16px;"></i>
+                        <h4 style="margin-bottom: 4px;">AS9100D</h4>
+                        <span style="font-size: 0.8rem; color: var(--clr-text-secondary);">Aviation & Defense</span>
+                    </div>
+                    <div class="card-minimal">
+                        <i class="fa-solid fa-file-shield"
+                            style="font-size: 2.5rem; color: var(--clr-text-secondary); margin-bottom: 16px;"></i>
+                        <h4 style="margin-bottom: 4px;">ISO 13485</h4>
+                        <span style="font-size: 0.8rem; color: var(--clr-text-secondary);">Medical Devices</span>
+                    </div>
+                    <div class="card-minimal">
+                        <i class="fa-solid fa-file-shield"
+                            style="font-size: 2.5rem; color: var(--clr-text-secondary); margin-bottom: 16px;"></i>
+                        <h4 style="margin-bottom: 4px;">ISO 14001</h4>
+                        <span style="font-size: 0.8rem; color: var(--clr-text-secondary);">Environmental Mgmt</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Team -->
+        <section class="section">
+            <div class="container">
+                <div class="text-center mb-8">
+                    <span class="hero-subtitle">Leadership</span>
+                    <h2>Our Executive Team</h2>
+                </div>
+
+                <div class="grid grid-cols-3 text-center" style="gap: 32px; max-width: 900px; margin: 0 auto;">
+                    <div>
+                        <img src="assets/images/freepik__team-of-professional-engineers-in-safety-helmets-d__4061.png"
+                            alt="CEO"
+                            style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; margin: 0 auto 16px; border: 4px solid var(--clr-border);">
+                        <h4>Robert Vance</h4>
+                        <p style="color: var(--clr-primary); font-size: 0.9rem;">Chief Executive Officer</p>
+                    </div>
+                    <div>
+                        <img src="assets/images/freepik__engineer-inspecting-mechanical-parts-in-a-manufact__4062.png"
+                            alt="CTO"
+                            style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; margin: 0 auto 16px; border: 4px solid var(--clr-border);">
+                        <h4>Dr. Elena Rostova</h4>
+                        <p style="color: var(--clr-primary); font-size: 0.9rem;">Chief Engineering Officer</p>
+                    </div>
+                    <div>
+                        <img src="assets/images/freepik__team-of-professional-engineers-in-safety-helmets-d__4061.png"
+                            alt="COO"
+                            style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; margin: 0 auto 16px; border: 4px solid var(--clr-border);">
+                        <h4>Marcus Chen</h4>
+                        <p style="color: var(--clr-primary); font-size: 0.9rem;">VP of Global Operations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section text-center" style="border-top: 1px solid var(--clr-border);">
+            <div class="container" style="max-width: 800px;">
+                <h2 class="mb-4">Partner With Us</h2>
+                <a href="contact.html" class="btn btn-primary" style="font-size: 1.125rem; padding: 16px 32px;">Contact
+                    Our Team</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-cols-4 footer-top">
+                <div class="footer-col" style="grid-column: span 1;">
+                    <a href="index.html" class="logo mb-4">
+                        <img src="assets/images/logo.png" alt="CORE Logo"
+                            style="height: 40px; width: auto; vertical-align: middle; margin-right: 8px;">
+                        CORE
+                    </a>
+                    <p>Engineered for excellence. CORE delivers premium industrial manufacturing solutions with
+                        uncompromising quality.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Company</a></li>
+                        <li><a href="industries.html">Industries Served</a></li>
+                        <li><a href="products.html">Featured Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Manufacturing</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">CNC Machining</a></li>
+                        <li><a href="#">Sheet Metal Fabrication</a></li>
+                        <li><a href="#">Injection Molding</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="width: 20px; color: var(--clr-primary);"></i> 100
+                            Industrial Pkwy</li>
+                        <li style="margin-top: 12px;"><i class="fa-solid fa-phone"
+                                style="width: 20px; color: var(--clr-primary);"></i> +1 (555) 123-4567</li>
+                        <li style="margin-top: 12px;"><i class="fa-solid fa-envelope"
+                                style="width: 20px; color: var(--clr-primary);"></i> sales@core.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CORE Industries. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

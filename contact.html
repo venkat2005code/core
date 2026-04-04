@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE | Contact Us</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="CORE Logo"
+                    style="height: 40px; width: auto; vertical-align: middle; margin-right: 8px;">
+                CORE
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li class="nav-item">
+                        <a href="#">Home <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem;"></i></a>
+                        <div class="dropdown">
+                            <a href="index.html">Industrial Hero</a>
+                            <a href="index2.html">Machinery Split</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="products.html">Products</a></li>
+                    <li class="nav-item"><a href="industries.html">Industries</a></li>
+                    <li class="nav-item"><a href="about.html">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="active">Contact</a></li>
+                    <li class="nav-item">
+                        <a href="#">Dashboards <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem;"></i></a>
+                        <div class="dropdown">
+                            <a href="user_dashboard.html">User Dashboard</a>
+                            <a href="admin_dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="login.html" class="nav-btn nav-signin">Sign In</a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-btn nav-signup">Sign Up</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-btn" id="dirToggle" title="Toggle RTL/LTR">
+                    <i class="fa-solid fa-globe"></i>
+                </button>
+                <button class="icon-btn mobile-toggle" id="mobileToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="hero"
+            style="min-height: 40vh; padding: 100px 0; background: linear-gradient(var(--clr-overlay), var(--clr-overlay)), url('assets/images/freepik__modern-manufacturing-factory-interior-synchronized__4059.png'); background-size: cover; background-position: center;">
+            <div class="container text-center">
+                <h1 style="margin-bottom: 16px;">Get In Touch</h1>
+                <p style="font-size: 1.125rem; max-width: 600px; margin: 0 auto; color: var(--clr-text-secondary);">
+                    Connect with our engineering and sales
+                    teams to discuss your next manufacturing project.</p>
+            </div>
+        </section>
+
+        <!-- Contact Form & Details Section -->
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-cols-2" style="gap: 48px;">
+                    <!-- Contact Form -->
+                    <div class="card p-0" style="border: none;">
+                        <div
+                            style="background: var(--clr-surface); padding: 48px; border-radius: var(--border-radius); border: 1px solid var(--clr-border); height: 100%;">
+                            <h2 class="mb-4">Send a Message</h2>
+                            <form action="#" method="POST">
+                                <div class="grid grid-cols-2" style="gap: 16px;">
+                                    <div class="form-group">
+                                        <label class="form-label" for="name">Full Name</label>
+                                        <input type="text" id="name" class="form-control" placeholder="John Doe"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="email">Email Address</label>
+                                        <input type="email" id="email" class="form-control"
+                                            placeholder="john@company.com" required>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2" style="gap: 16px;">
+                                    <div class="form-group">
+                                        <label class="form-label" for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" class="form-control"
+                                            placeholder="+1 (555) 000-0000">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="subject">Subject</label>
+                                        <select id="subject" class="form-control" required
+                                            style="background-color: var(--clr-bg); color: var(--clr-text-primary);">
+                                            <option value="">Select a topic...</option>
+                                            <option value="quote">Request a Quote</option>
+                                            <option value="engineering">Engineering Support</option>
+                                            <option value="general">General Inquiry</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="message">Project Details / Message</label>
+                                    <textarea id="message" class="form-control"
+                                        placeholder="Please describe your manufacturing requirements..."
+                                        required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-full" style="padding: 16px;">Submit
+                                    Inquiry</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details & Map -->
+                    <div>
+                        <div class="grid grid-cols-2" style="gap: 24px; margin-bottom: 32px;">
+                            <div class="card card-minimal">
+                                <i class="fa-solid fa-location-dot"
+                                    style="font-size: 2rem; color: var(--clr-primary); margin-bottom: 16px;"></i>
+                                <h4 style="margin-bottom: 8px;">Headquarters</h4>
+                                <p style="font-size: 0.9rem; margin: 0;">100 Industrial Parkway<br>Detroit, MI
+                                    48201<br>United States</p>
+                            </div>
+                            <div class="card card-minimal">
+                                <i class="fa-solid fa-headset"
+                                    style="font-size: 2rem; color: var(--clr-primary); margin-bottom: 16px;"></i>
+                                <h4 style="margin-bottom: 8px;">24/7 Support</h4>
+                                <p style="font-size: 0.9rem; margin: 0;">+1 (800) 555-0199<br>support@manufact.com</p>
+                            </div>
+                        </div>
+
+                        <div class="card p-0"
+                            style="border: none; overflow: hidden; border-radius: var(--border-radius); border: 1px solid var(--clr-border);">
+                            <div class="map-placeholder" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Locations -->
+        <section class="section bg-surface text-center">
+            <div class="container">
+                <span class="hero-subtitle">Presence</span>
+                <h2 class="mb-8">Global Office Locations</h2>
+                <div class="grid grid-cols-3">
+                    <div style="border-top: 2px solid var(--clr-border); padding-top: 24px; text-align: left;">
+                        <h4>North America</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 12px; font-size: 0.95rem;"><strong
+                                    style="color: var(--clr-text-primary);">Detroit (HQ)</strong> - Production & Admin
+                            </li>
+                            <li style="margin-bottom: 12px; font-size: 0.95rem;"><strong
+                                    style="color: var(--clr-text-primary);">Houston</strong> - Energy Sector Hub</li>
+                            <li style="font-size: 0.95rem;"><strong
+                                    style="color: var(--clr-text-primary);">Monterrey</strong> - Assembly Plant</li>
+                        </ul>
+                    </div>
+                    <div style="border-top: 2px solid var(--clr-border); padding-top: 24px; text-align: left;">
+                        <h4>Europe</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 12px; font-size: 0.95rem;"><strong
+                                    style="color: var(--clr-text-primary);">Munich</strong> - Automotive Hub</li>
+                            <li style="margin-bottom: 12px; font-size: 0.95rem;"><strong
+                                    style="color: var(--clr-text-primary);">Toulouse</strong> - Aerospace Center</li>
+                        </ul>
+                    </div>
+                    <div style="border-top: 2px solid var(--clr-border); padding-top: 24px; text-align: left;">
+                        <h4>Asia Pacific</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 12px; font-size: 0.95rem;"><strong
+                                    style="color: var(--clr-text-primary);">Shenzhen</strong> - Electronics Assembly
+                            </li>
+                            <li style="font-size: 0.95rem;"><strong
+                                    style="color: var(--clr-text-primary);">Singapore</strong> - Logistics Hub</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-cols-4 footer-top">
+                <div class="footer-col" style="grid-column: span 1;">
+                    <a href="index.html" class="logo mb-4">
+                        <img src="assets/images/logo.png" alt="CORE Logo"
+                            style="height: 40px; width: auto; vertical-align: middle; margin-right: 8px;">
+                        CORE
+                    </a>
+                    <p>Engineered for excellence. CORE delivers premium industrial manufacturing solutions with
+                        uncompromising quality.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Company</a></li>
+                        <li><a href="industries.html">Industries Served</a></li>
+                        <li><a href="products.html">Featured Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Manufacturing</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">CNC Machining</a></li>
+                        <li><a href="#">Sheet Metal Fabrication</a></li>
+                        <li><a href="#">Injection Molding</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fa-solid fa-location-dot" style="width: 20px; color: var(--clr-primary);"></i> 100
+                            Industrial Pkwy</li>
+                        <li style="margin-top: 12px;"><i class="fa-solid fa-envelope"
+                                style="width: 20px; color: var(--clr-primary);"></i> sales@core.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CORE Industries. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
