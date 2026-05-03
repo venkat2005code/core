@@ -46,7 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const dirToggle = document.getElementById('dirToggle');
     const htmlTag = document.documentElement;
 
+    const updateDirToggle = () => {
+        if (dirToggle) {
+            dirToggle.textContent = htmlTag.getAttribute('dir') === 'rtl' ? 'RTL' : 'LTR';
+        }
+    };
+
     if (dirToggle) {
+        updateDirToggle(); // Initialize
         dirToggle.addEventListener('click', () => {
             const currentDir = htmlTag.getAttribute('dir');
             if (currentDir === 'rtl') {
@@ -54,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 htmlTag.setAttribute('dir', 'rtl');
             }
+            updateDirToggle();
         });
     }
 
