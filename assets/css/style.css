@@ -41,7 +41,7 @@
     --shadow-premium: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 10px 20px -5px rgba(0, 0, 0, 0.4);
 
     /* Overlay Variable (Crucial for Hero visibility in Light/Dark) */
-    --clr-overlay: rgba(15, 23, 42, 0.5);
+    --clr-overlay: rgba(5, 10, 28, 0.68);
 
     /* Transitions */
     --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -69,7 +69,8 @@
     --glass-bg: rgba(255, 255, 255, 0.7);
     --shadow-premium: 0 20px 40px -10px rgba(15, 23, 42, 0.1), 0 10px 20px -5px rgba(15, 23, 42, 0.05);
 
-    --clr-overlay: rgba(255, 255, 255, 0.45);
+    /* Light mode hero also needs a dark overlay so white text is readable over photos */
+    --clr-overlay: rgba(5, 10, 28, 0.62);
 }
 
 [data-theme="light"] body,
@@ -610,6 +611,13 @@ textarea.form-control {
     min-width: 0;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+}
+
+.nav-container nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .logo {
@@ -635,12 +643,13 @@ textarea.form-control {
 /* Dropdown Support */
 .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     /* Standardize equal spacing */
     list-style: none;
     align-items: center;
     height: 80px;
     /* Issue 17 */
+    white-space: nowrap;
 }
 
 .nav-item {
@@ -765,7 +774,7 @@ textarea.form-control {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(2, 6, 23, 0.2) 0%, transparent 100%);
+    background: linear-gradient(160deg, rgba(2, 6, 23, 0.55) 0%, rgba(2, 6, 23, 0.15) 100%);
     z-index: 1;
 }
 
@@ -790,6 +799,18 @@ textarea.form-control {
     align-items: center;
     min-height: 400px;
     /* Ensures consistent block height */
+}
+
+/* Force hero text to always be white for contrast over any background image */
+.hero-content h1,
+.hero-content p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content .hero-subtitle {
+    color: #7EC8FF !important;
+    text-shadow: 0 0 24px rgba(59, 130, 246, 0.7);
 }
 
 .hero-subtitle {
