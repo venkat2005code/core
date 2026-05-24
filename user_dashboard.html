@@ -4,140 +4,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Dashboard | CORE</title>
+    <title>Client Dashboard | CORE Manufacturing</title>
+    <meta name="description" content="CORE Manufacturing client portal — overview of your orders, projects, spend, and activity.">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* ── Infographic Grid ───────────────────────────────────── */
+        .infographic-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+        .infographic { background: var(--dash-surface); border: 1px solid var(--dash-border); border-radius: 14px; padding: 22px 24px; }
+        .infographic h3 { font-size: 0.85rem !important; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--dash-muted); margin-bottom: 16px !important; }
+        .span-12 { grid-column: span 12; }
+        .span-8  { grid-column: span 8;  }
+        .span-6  { grid-column: span 6;  }
+        .span-4  { grid-column: span 4;  }
+
+        /* ── KPI Cards ──────────────────────────────────────────── */
+        .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .kpi-card { background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(0,229,255,0.04) 100%); border: 1px solid rgba(59,130,246,0.15); border-radius: 12px; padding: 20px; transition: transform .25s, box-shadow .25s; }
+        .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(59,130,246,0.15); }
+        .kpi-card .value { font-size: 2rem; font-weight: 800; color: var(--dash-text); letter-spacing: -0.03em; }
+        .kpi-card .label { font-size: 0.82rem; color: var(--dash-muted); margin-top: 4px; }
+        .kpi-card .change { font-size: 0.78rem; margin-top: 8px; }
+        .kpi-card .change.positive { color: #10b981; }
+        .kpi-card .change.negative { color: #ef4444; }
+
+        /* ── Chart wrap ─────────────────────────────────────────── */
+        .chart-wrap { position: relative; }
+
+        /* ── Progress list ──────────────────────────────────────── */
+        .progress-list { display: flex; flex-direction: column; gap: 14px; }
+        .progress-item label { display: block; font-size: 0.82rem; color: var(--dash-muted); margin-bottom: 6px; }
+        .progress-bar { background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; height: 8px; }
+        .progress-bar .fill { height: 100%; background: linear-gradient(90deg, var(--dash-primary), var(--dash-accent)); border-radius: 6px; transition: width 1s ease; }
+
+        /* ── Data table ─────────────────────────────────────────── */
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .data-table th { padding: 8px 12px; color: var(--dash-muted); text-transform: uppercase; font-size: 0.72rem; letter-spacing: .06em; border-bottom: 1px solid var(--dash-border); text-align: left; }
+        .data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--dash-text); }
+        .data-table tr:last-child td { border: none; }
+        .data-table tr:hover td { background: rgba(59,130,246,0.06); }
+
+        /* ── Gauge ──────────────────────────────────────────────── */
+        .gauge-wrap { display: flex; align-items: center; justify-content: center; padding: 20px 0; }
+        .gauge-value { font-size: 3rem; font-weight: 800; color: var(--dash-text); letter-spacing: -0.04em; }
+
+        /* ── Stat mini ──────────────────────────────────────────── */
+        .stat-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .stat-mini .item { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--dash-border); border-radius: 10px; padding: 14px; }
+        .stat-mini .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; }
+        .stat-mini .icon.blue { background: rgba(59,130,246,0.15); color: #3b82f6; }
+        .stat-mini .icon.cyan { background: rgba(0,229,255,0.12); color: #00e5ff; }
+        .stat-mini .num { font-size: 1.3rem; font-weight: 700; color: var(--dash-text); }
+        .stat-mini .lbl { font-size: 0.75rem; color: var(--dash-muted); }
+
+        /* ── Activity list ──────────────────────────────────────── */
+        .activity-list { display: flex; flex-direction: column; gap: 12px; }
+        .activity-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--dash-border); font-size: 0.85rem; color: var(--dash-text); }
+        .activity-item:last-child { border: none; }
+        .activity-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+        .activity-dot.blue  { background: #3b82f6; box-shadow: 0 0 6px rgba(59,130,246,.5); }
+        .activity-dot.green { background: #10b981; box-shadow: 0 0 6px rgba(16,185,129,.5); }
+        .activity-dot.amber { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,.5); }
+
+        /* ── Sidebar user profile ───────────────────────────────── */
+        .sidebar-user { padding: 16px 24px; border-bottom: 1px solid var(--clr-border); display: flex; align-items: center; gap: 12px; }
+        .sidebar-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,#3b82f6,#00e5ff); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+        .sidebar-user-info .user-name { font-size: 0.88rem; font-weight: 600; color: var(--clr-text-primary); }
+        .sidebar-user-info .user-role { font-size: 0.73rem; color: var(--dash-muted); }
+
+        /* ── Page header ────────────────────────────────────────── */
+        .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+        .page-header h1 { margin-bottom: 4px; }
+        .header-actions { display: flex; gap: 10px; }
+        .btn-sm { padding: 9px 20px; font-size: 0.8rem; min-width: unset; }
+        .btn-icon { width: 40px; height: 40px; padding: 0; min-width: unset; border-radius: 10px; font-size: 1rem; }
+
+        /* ── Sidebar nav section labels ─────────────────────────── */
+        .nav-section-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--dash-muted); padding: 16px 24px 6px; }
+
+        @media (max-width: 1200px) {
+            .span-8 { grid-column: span 12; }
+            .span-4 { grid-column: span 12; }
+        }
+        @media (max-width: 900px) {
+            .span-6 { grid-column: span 12; }
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .kpi-row { grid-template-columns: 1fr; }
+            .stat-mini { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 
 <body class="dashboard-page">
     <!-- Floating Actions -->
     <div class="floating-actions">
-        <button id="themeToggle" class="icon-btn"
-            style="background: var(--dash-surface); border: 1px solid var(--dash-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); color: var(--dash-text);">
+        <button id="themeToggle" class="icon-btn" style="background: var(--dash-surface); border: 1px solid var(--dash-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: var(--shadow-premium); color: var(--dash-text);">
             <i class="fa-solid fa-moon"></i>
         </button>
-        <button id="dirToggle" class="icon-btn"
-            style="background: var(--dash-surface); border: 1px solid var(--dash-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); color: var(--dash-text);">LTR</button>
+        <button id="dirToggle" class="icon-btn" style="background: var(--dash-surface); border: 1px solid var(--dash-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: var(--shadow-premium); color: var(--dash-text);">LTR</button>
     </div>
 
-    <!-- Sidebar Trigger (Mobile) -->
-    <button id="sidebarToggle" class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+    <!-- Sidebar Toggle (Mobile) -->
+    <button id="sidebarToggle" class="sidebar-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
+
     <aside class="sidebar" id="sidebar">
+        <!-- Logo -->
         <div class="sidebar-header">
-            <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+            <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="var(--clr-primary)" stroke-width="2.5" fill="transparent"/>
-    <circle cx="16" cy="16" r="5" fill="var(--clr-primary)"/>
-    <path d="M16 2L16 11" stroke="var(--clr-primary)" stroke-width="2.5"/>
-    <path d="M4 9L11 13.5" stroke="var(--clr-primary)" stroke-width="2.5"/>
-    <path d="M28 9L21 13.5" stroke="var(--clr-primary)" stroke-width="2.5"/>
-</svg>
+                    <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="var(--clr-primary)" stroke-width="2.5" fill="transparent"/>
+                    <circle cx="16" cy="16" r="5" fill="var(--clr-primary)"/>
+                    <path d="M16 2L16 11" stroke="var(--clr-primary)" stroke-width="2.5"/>
+                    <path d="M4 9L11 13.5" stroke="var(--clr-primary)" stroke-width="2.5"/>
+                    <path d="M28 9L21 13.5" stroke="var(--clr-primary)" stroke-width="2.5"/>
+                </svg>
                 <span class="brand-name">CORE</span>
             </a>
         </div>
+
+        <!-- User Profile -->
+        <div class="sidebar-user">
+            <div class="sidebar-avatar">JD</div>
+            <div class="sidebar-user-info">
+                <div class="user-name">John Doe</div>
+                <div class="user-role">Client Account</div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
         <nav class="sidebar-nav">
-            <a href="user_dashboard.html" class="active"><i class="fa-solid fa-gauge-high"></i> <span>User
-                    Dashboard</span></a>
-            <a href="admin_dashboard.html"><i class="fa-solid fa-shield-halved"></i> <span>Admin Dashboard</span></a>
-            <a href="projects.html"><i class="fa-solid fa-folder-open"></i> <span>Projects</span></a>
+            <div class="nav-section-label">Main</div>
+            <a href="user_dashboard.html" class="active"><i class="fa-solid fa-gauge-high"></i> <span>Dashboard</span></a>
+            <a href="projects.html"><i class="fa-solid fa-folder-open"></i> <span>Projects &amp; Orders</span></a>
+            <a href="products.html"><i class="fa-solid fa-box-open"></i> <span>Products</span></a>
             <a href="reports.html"><i class="fa-solid fa-chart-line"></i> <span>Reports</span></a>
             <a href="documents.html"><i class="fa-solid fa-file-lines"></i> <span>Documents</span></a>
+            <div class="nav-section-label">Account</div>
             <a href="settings.html"><i class="fa-solid fa-gear"></i> <span>Settings</span></a>
         </nav>
-        <div class="sidebar-footer">
 
-            <a href="login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Log out</span></a>
+        <!-- Logout Footer -->
+        <div class="sidebar-footer">
+            <a href="logout.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Log Out</span></a>
         </div>
     </aside>
+
     <main class="dashboard-main">
-        <h1>Client Dashboard</h1>
-        <p class="subtitle">Overview of your orders, projects, and activity</p>
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1>Client Dashboard</h1>
+                <p class="subtitle">Overview of your orders, projects, and activity</p>
+            </div>
+            <div class="header-actions">
+                <a href="projects.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-plus" style="margin-right:6px;"></i>New Order</a>
+                <a href="reports.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-chart-bar" style="margin-right:6px;"></i>View Reports</a>
+            </div>
+        </div>
 
         <div class="infographic-grid">
             <!-- 1. KPI Cards -->
             <div class="infographic span-12">
-                <h3>Key metrics</h3>
+                <h3>Key Metrics</h3>
                 <div class="kpi-row">
                     <div class="kpi-card">
                         <div class="value">24</div>
-                        <div class="label">Active orders</div>
-                        <div class="change positive"><i class="fa-solid fa-arrow-up"></i> 12% vs last month</div>
+                        <div class="label">Active Orders</div>
+                        <div class="change positive"><i class="fa-solid fa-arrow-trend-up"></i> +12% vs last month</div>
                     </div>
                     <div class="kpi-card">
                         <div class="value">$847K</div>
-                        <div class="label">YTD spend</div>
-                        <div class="change positive"><i class="fa-solid fa-arrow-up"></i> 8% vs last year</div>
+                        <div class="label">YTD Spend</div>
+                        <div class="change positive"><i class="fa-solid fa-arrow-trend-up"></i> +8% vs last year</div>
                     </div>
                     <div class="kpi-card">
                         <div class="value">18</div>
-                        <div class="label">Open projects</div>
-                        <div class="change negative"><i class="fa-solid fa-arrow-down"></i> 2 from last week</div>
+                        <div class="label">Open Projects</div>
+                        <div class="change negative"><i class="fa-solid fa-arrow-trend-down"></i> −2 from last week</div>
                     </div>
                     <div class="kpi-card">
                         <div class="value">94%</div>
-                        <div class="label">On-time delivery</div>
-                        <div class="change positive"><i class="fa-solid fa-arrow-up"></i> 3% improvement</div>
+                        <div class="label">On-Time Delivery</div>
+                        <div class="change positive"><i class="fa-solid fa-arrow-trend-up"></i> +3% improvement</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. Orders trend (line chart) -->
+            <!-- 2. Order volume trend -->
             <div class="infographic span-8">
-                <h3>Order volume trend</h3>
-                <div class="chart-wrap" style="height: 180px;"><canvas id="chartOrders"></canvas></div>
+                <h3>Order Volume Trend</h3>
+                <div class="chart-wrap" style="height:200px;"><canvas id="chartOrders"></canvas></div>
             </div>
 
-            <!-- 3. Order status (doughnut) -->
+            <!-- 3. Order status mix -->
             <div class="infographic span-4">
-                <h3>Order status mix</h3>
-                <div class="chart-wrap" style="height: 180px;"><canvas id="chartStatus"></canvas></div>
+                <h3>Order Status Mix</h3>
+                <div class="chart-wrap" style="height:200px;"><canvas id="chartStatus"></canvas></div>
             </div>
 
-            <!-- 4. Monthly spend (bar chart) -->
+            <!-- 4. Monthly spend -->
             <div class="infographic span-6">
-                <h3>Monthly spend (last 6 months)</h3>
-                <div class="chart-wrap" style="height: 180px;"><canvas id="chartSpend"></canvas></div>
+                <h3>Monthly Spend — Last 6 Months ($K)</h3>
+                <div class="chart-wrap" style="height:200px;"><canvas id="chartSpend"></canvas></div>
             </div>
 
-            <!-- 5. Project progress bars -->
+            <!-- 5. Project progress -->
             <div class="infographic span-6">
-                <h3>Top projects progress</h3>
+                <h3>Top Projects Progress</h3>
                 <div class="progress-list">
                     <div class="progress-item">
-                        <label>PRJ-2041 — Enclosure assembly</label>
-                        <div class="progress-bar">
-                            <div class="fill" style="width: 78%; height: 8px;"></div>
-                        </div>
+                        <label>PRJ-2041 — Enclosure Assembly <strong style="float:right;color:var(--dash-text);">78%</strong></label>
+                        <div class="progress-bar"><div class="fill" style="width:78%;"></div></div>
                     </div>
                     <div class="progress-item">
-                        <label>PRJ-2038 — Valve housing batch</label>
-                        <div class="progress-bar">
-                            <div class="fill" style="width: 55%; height: 8px;"></div>
-                        </div>
+                        <label>PRJ-2038 — Valve Housing Batch <strong style="float:right;color:var(--dash-text);">55%</strong></label>
+                        <div class="progress-bar"><div class="fill" style="width:55%;"></div></div>
                     </div>
                     <div class="progress-item">
-                        <label>PRJ-2035 — Custom tooling</label>
-                        <div class="progress-bar">
-                            <div class="fill" style="width: 92%; height: 8px;"></div>
-                        </div>
+                        <label>PRJ-2035 — Custom Tooling <strong style="float:right;color:var(--dash-text);">92%</strong></label>
+                        <div class="progress-bar"><div class="fill" style="width:92%;"></div></div>
                     </div>
                     <div class="progress-item">
-                        <label>PRJ-2032 — Prototype run</label>
-                        <div class="progress-bar">
-                            <div class="fill" style="width: 40%; height: 8px;"></div>
-                        </div>
+                        <label>PRJ-2032 — Prototype Run <strong style="float:right;color:var(--dash-text);">40%</strong></label>
+                        <div class="progress-bar"><div class="fill" style="width:40%;"></div></div>
                     </div>
                 </div>
             </div>
 
             <!-- 6. Recent orders table -->
             <div class="infographic span-6">
-                <h3>Recent orders</h3>
+                <h3>Recent Orders</h3>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -149,111 +254,65 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>#PO-2044</td>
-                            <td>H-200 Piston</td>
-                            <td>150</td>
-                            <td><span style="color: var(--dash-success);">Shipped</span></td>
+                            <td>#PO-2044</td><td>H-200 Piston</td><td>150</td>
+                            <td><span style="color:#10b981;font-weight:600;">Shipped</span></td>
                         </tr>
                         <tr>
-                            <td>#PO-2043</td>
-                            <td>V-Class Valve</td>
-                            <td>80</td>
-                            <td><span style="color: var(--dash-warning);">In production</span></td>
+                            <td>#PO-2043</td><td>V-Class Valve</td><td>80</td>
+                            <td><span style="color:#f59e0b;font-weight:600;">In Production</span></td>
                         </tr>
                         <tr>
-                            <td>#PO-2042</td>
-                            <td>C-750 Pump</td>
-                            <td>45</td>
-                            <td><span style="color: var(--dash-primary);">Pending</span></td>
+                            <td>#PO-2042</td><td>C-750 Pump</td><td>45</td>
+                            <td><span style="color:#3b82f6;font-weight:600;">Pending</span></td>
                         </tr>
                         <tr>
-                            <td>#PO-2041</td>
-                            <td>Logic Module X</td>
-                            <td>200</td>
-                            <td><span style="color: var(--dash-success);">Delivered</span></td>
+                            <td>#PO-2041</td><td>Logic Module X</td><td>200</td>
+                            <td><span style="color:#10b981;font-weight:600;">Delivered</span></td>
                         </tr>
                     </tbody>
                 </table>
+                <a href="projects.html" style="font-size:0.8rem;color:var(--dash-primary);display:inline-flex;align-items:center;gap:6px;margin-top:8px;">View all orders <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
-            <!-- 7. Quota gauge -->
+            <!-- 7. Contract quota -->
             <div class="infographic span-6">
-                <h3>Contract quota used</h3>
+                <h3>Contract Quota Used</h3>
                 <div class="gauge-wrap">
-                    <div style="text-align: center;">
-                        <div class="gauge-value" id="gaugeVal">67%</div>
-                        <div style="font-size: 0.875rem; color: var(--dash-muted); margin-top: 4px;">of annual
-                            commitment</div>
+                    <div style="text-align:center;">
+                        <div class="gauge-value">67%</div>
+                        <div style="font-size:0.875rem;color:var(--dash-muted);margin-top:4px;">of annual commitment</div>
                     </div>
                 </div>
-                <div class="progress-bar" style="margin-top: 16px;">
-                    <div class="fill"
-                        style="width: 67%; height: 8px; background: linear-gradient(90deg, var(--dash-primary), var(--dash-accent)); border-radius: 4px;">
-                    </div>
+                <div class="progress-bar" style="margin-top:16px;">
+                    <div class="fill" style="width:67%;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--dash-primary),var(--dash-accent));"></div>
                 </div>
             </div>
 
-            <!-- 8. Quick stats grid -->
+            <!-- 8. Quick stats -->
             <div class="infographic span-6">
-                <h3>Quick stats</h3>
+                <h3>Quick Stats</h3>
                 <div class="stat-mini">
-                    <div class="item">
-                        <div class="icon blue"><i class="fa-solid fa-truck"></i></div>
-                        <div>
-                            <div class="num">7</div>
-                            <div class="lbl">In transit</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="icon cyan"><i class="fa-solid fa-clock"></i></div>
-                        <div>
-                            <div class="num">4.2d</div>
-                            <div class="lbl">Avg. lead time</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="icon blue"><i class="fa-solid fa-file-signature"></i></div>
-                        <div>
-                            <div class="num">12</div>
-                            <div class="lbl">Pending quotes</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="icon cyan"><i class="fa-solid fa-check-double"></i></div>
-                        <div>
-                            <div class="num">156</div>
-                            <div class="lbl">Completed YTD</div>
-                        </div>
-                    </div>
+                    <div class="item"><div class="icon blue"><i class="fa-solid fa-truck"></i></div><div><div class="num">7</div><div class="lbl">In Transit</div></div></div>
+                    <div class="item"><div class="icon cyan"><i class="fa-solid fa-clock"></i></div><div><div class="num">4.2d</div><div class="lbl">Avg. Lead Time</div></div></div>
+                    <div class="item"><div class="icon blue"><i class="fa-solid fa-file-signature"></i></div><div><div class="num">12</div><div class="lbl">Pending Quotes</div></div></div>
+                    <div class="item"><div class="icon cyan"><i class="fa-solid fa-check-double"></i></div><div><div class="num">156</div><div class="lbl">Completed YTD</div></div></div>
                 </div>
             </div>
 
-            <!-- 9. Category spend (horizontal bar) -->
+            <!-- 9. Spend by category -->
             <div class="infographic span-6">
-                <h3>Spend by category</h3>
-                <div class="chart-wrap" style="height: 180px;"><canvas id="chartCategory"></canvas></div>
+                <h3>Spend by Category</h3>
+                <div class="chart-wrap" style="height:200px;"><canvas id="chartCategory"></canvas></div>
             </div>
 
             <!-- 10. Recent activity -->
             <div class="infographic span-6">
-                <h3>Recent activity</h3>
+                <h3>Recent Activity</h3>
                 <div class="activity-list">
-                    <div class="activity-item">
-                        <span class="activity-dot blue"></span>
-                        <div><strong>PO-2044</strong> shipped — ETA Mar 18</div>
-                    </div>
-                    <div class="activity-item">
-                        <span class="activity-dot green"></span>
-                        <div><strong>Quote #Q-882</strong> approved for $24.5K</div>
-                    </div>
-                    <div class="activity-item">
-                        <span class="activity-dot amber"></span>
-                        <div><strong>PRJ-2038</strong> awaiting your approval</div>
-                    </div>
-                    <div class="activity-item">
-                        <span class="activity-dot blue"></span>
-                        <div><strong>Invoice INV-1203</strong> ready for download</div>
-                    </div>
+                    <div class="activity-item"><span class="activity-dot blue"></span><div><strong>PO-2044</strong> shipped — ETA Mar 18</div></div>
+                    <div class="activity-item"><span class="activity-dot green"></span><div><strong>Quote #Q-882</strong> approved for $24.5K</div></div>
+                    <div class="activity-item"><span class="activity-dot amber"></span><div><strong>PRJ-2038</strong> awaiting your approval</div></div>
+                    <div class="activity-item"><span class="activity-dot blue"></span><div><strong>Invoice INV-1203</strong> ready for <a href="documents.html" style="color:var(--dash-primary);">download</a></div></div>
                 </div>
             </div>
         </div>
@@ -262,7 +321,7 @@
     <script>
         (function () {
             const opts = { responsive: true, maintainAspectRatio: false };
-            const grid = { color: 'rgba(255,255,255,0.06)' };
+            const grid = { color: 'rgba(255,255,255,0.05)' };
             const ticks = { color: '#64748b', font: { size: 11 } };
 
             new Chart(document.getElementById('chartOrders'), {
@@ -274,42 +333,41 @@
                         data: [18, 22, 19, 28, 24, 26],
                         borderColor: '#3b82f6',
                         backgroundColor: 'rgba(59,130,246,0.15)',
-                        fill: true,
-                        tension: 0.3
+                        fill: true, tension: 0.4, pointRadius: 4,
+                        pointBackgroundColor: '#3b82f6'
                     }]
                 },
-                options: { ...opts, scales: { x: { grid, ticks } }, y: { grid, ticks }, plugins: { legend: { display: false } } }
+                options: { ...opts, scales: { x: { grid, ticks }, y: { grid, ticks } }, plugins: { legend: { display: false } } }
             });
 
             new Chart(document.getElementById('chartStatus'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['In production', 'Shipped', 'Pending', 'Delivered'],
-                    datasets: [{ data: [8, 6, 5, 5], backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#00e5ff'], borderColor: '#111827', borderWidth: 2 }]
+                    labels: ['In Production', 'Shipped', 'Pending', 'Delivered'],
+                    datasets: [{ data: [8, 6, 5, 5], backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#00e5ff'], borderColor: 'var(--dash-surface)', borderWidth: 3 }]
                 },
-                options: { ...opts, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', padding: 12 } } } }
+                options: { ...opts, cutout: '68%', plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', padding: 14, boxWidth: 10 } } } }
             });
 
             new Chart(document.getElementById('chartSpend'), {
                 type: 'bar',
                 data: {
                     labels: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
-                    datasets: [{ label: 'Spend ($K)', data: [112, 128, 145, 138, 152, 172], backgroundColor: 'rgba(0,229,255,0.5)', borderColor: '#00e5ff', borderWidth: 1 }]
+                    datasets: [{ label: 'Spend ($K)', data: [112, 128, 145, 138, 152, 172], backgroundColor: 'rgba(0,229,255,0.45)', borderColor: '#00e5ff', borderWidth: 1, borderRadius: 6 }]
                 },
-                options: { ...opts, scales: { x: { grid, ticks } }, y: { grid, ticks }, plugins: { legend: { display: false } } }
+                options: { ...opts, scales: { x: { grid: { display: false }, ticks }, y: { grid, ticks } }, plugins: { legend: { display: false } } }
             });
 
             new Chart(document.getElementById('chartCategory'), {
                 type: 'bar',
                 data: {
                     labels: ['Hydraulics', 'Valves', 'Pumps', 'Controllers', 'Other'],
-                    datasets: [{ label: 'Spend', data: [85, 62, 48, 35, 28], backgroundColor: ['#3b82f6', '#00e5ff', '#10b981', '#f59e0b', '#64748b'] }]
+                    datasets: [{ data: [85, 62, 48, 35, 28], backgroundColor: ['#3b82f6', '#00e5ff', '#10b981', '#f59e0b', '#64748b'], borderRadius: 4 }]
                 },
-                options: { ...opts, indexAxis: 'y', scales: { x: { grid, ticks } }, y: { grid, ticks }, plugins: { legend: { display: false } } }
+                options: { ...opts, indexAxis: 'y', scales: { x: { grid, ticks }, y: { grid: { display: false }, ticks } }, plugins: { legend: { display: false } } }
             });
         })();
     </script>
     <script src="assets/js/main.js"></script>
 </body>
-
 </html>
