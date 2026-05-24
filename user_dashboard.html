@@ -79,12 +79,57 @@
         .sidebar-user-info .user-name { font-size: 0.88rem; font-weight: 600; color: var(--clr-text-primary); }
         .sidebar-user-info .user-role { font-size: 0.73rem; color: var(--dash-muted); }
 
-        /* ── Page header ────────────────────────────────────────── */
-        .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
-        .page-header h1 { margin-bottom: 4px; }
-        .header-actions { display: flex; gap: 10px; }
+        /* ── Dash header (title bar) ─────────────────────────────── */
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--dash-border);
+        }
+        .dash-header-left { display: flex; flex-direction: column; gap: 2px; }
+        .dash-header-left h1 { margin-bottom: 0 !important; }
+        .dash-header-left .subtitle { margin-bottom: 0 !important; }
+        .dash-header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
         .btn-sm { padding: 9px 20px; font-size: 0.8rem; min-width: unset; }
-        .btn-icon { width: 40px; height: 40px; padding: 0; min-width: unset; border-radius: 10px; font-size: 1rem; }
+        .ctrl-btn {
+            width: 38px; height: 38px;
+            background: var(--dash-surface);
+            border: 1px solid var(--dash-border);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--dash-text);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+        }
+        .ctrl-btn:hover { background: var(--dash-surface-hover); border-color: var(--dash-primary); }
+        .ctrl-btn-text {
+            height: 38px;
+            padding: 0 12px;
+            background: var(--dash-surface);
+            border: 1px solid var(--dash-border);
+            border-radius: 19px;
+            display: flex; align-items: center;
+            color: var(--dash-text);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+        }
+        .ctrl-btn-text:hover { background: var(--dash-surface-hover); border-color: var(--dash-primary); }
+        .btn-divider { width: 1px; height: 24px; background: var(--dash-border); margin: 0 4px; }
 
         /* ── Sidebar nav section labels ─────────────────────────── */
         .nav-section-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--dash-muted); padding: 16px 24px 6px; }
@@ -96,22 +141,18 @@
         @media (max-width: 900px) {
             .span-6 { grid-column: span 12; }
             .kpi-row { grid-template-columns: repeat(2, 1fr); }
+            .dash-header { flex-direction: column; align-items: flex-start; }
         }
         @media (max-width: 600px) {
             .kpi-row { grid-template-columns: 1fr; }
             .stat-mini { grid-template-columns: 1fr; }
+            .dash-header-right { width: 100%; justify-content: flex-start; }
         }
     </style>
 </head>
 
 <body class="dashboard-page">
-    <!-- Floating Actions -->
-    <div class="floating-actions">
-        <button id="themeToggle" class="icon-btn" style="background: var(--dash-surface); border: 1px solid var(--dash-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: var(--shadow-premium); color: var(--dash-text);">
-            <i class="fa-solid fa-moon"></i>
-        </button>
-        <button id="dirToggle" class="icon-btn" style="background: var(--dash-surface); border: 1px solid var(--dash-border); width: 44px; height: 44px; border-radius: 50%; box-shadow: var(--shadow-premium); color: var(--dash-text);">LTR</button>
-    </div>
+    <!-- Sidebar Toggle (Mobile only) -->
 
     <!-- Sidebar Toggle (Mobile) -->
     <button id="sidebarToggle" class="sidebar-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
@@ -159,15 +200,18 @@
     </aside>
 
     <main class="dashboard-main">
-        <!-- Page Header -->
-        <div class="page-header">
-            <div>
+        <!-- Dash Header: title + actions + controls in one compact bar -->
+        <div class="dash-header">
+            <div class="dash-header-left">
                 <h1>Client Dashboard</h1>
                 <p class="subtitle">Overview of your orders, projects, and activity</p>
             </div>
-            <div class="header-actions">
+            <div class="dash-header-right">
                 <a href="projects.html" class="btn btn-secondary btn-sm"><i class="fa-solid fa-plus" style="margin-right:6px;"></i>New Order</a>
                 <a href="reports.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-chart-bar" style="margin-right:6px;"></i>View Reports</a>
+                <div class="btn-divider"></div>
+                <button id="themeToggle" class="ctrl-btn" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+                <button id="dirToggle" class="ctrl-btn-text" title="Toggle RTL/LTR">LTR</button>
             </div>
         </div>
 
