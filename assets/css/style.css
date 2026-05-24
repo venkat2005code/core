@@ -1057,6 +1057,28 @@ tr:hover {
     border-right: 2px solid var(--clr-electric);
 }
 
+/* Sidebar Footer (Logout link) */
+.sidebar-footer {
+    padding: 16px 0;
+    border-top: 1px solid var(--clr-border);
+}
+
+.sidebar-footer a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    color: var(--clr-text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+
+.sidebar-footer a:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -1085,28 +1107,93 @@ tr:hover {
 
 /* Dashboard Responsive Fixes */
 @media (max-width: 1024px) {
+    /* Sidebar becomes a slide-over overlay — not a collapsed strip */
     .sidebar {
-        width: var(--sidebar-collapsed-width);
+        width: 280px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        transform: translateX(-100%);
+        z-index: 1100;
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+        background: var(--sidebar-bg);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .sidebar-header {
-        padding: 20px 0;
-        text-align: center;
+    .sidebar.active {
+        transform: translateX(0);
     }
 
-    .sidebar-header a span,
-    .sidebar-nav a span {
+    /* Restore full text labels when sidebar is active */
+    .sidebar.active .sidebar-header a span,
+    .sidebar.active .sidebar-nav a span {
+        display: inline-block !important;
+    }
+
+    .sidebar.active .sidebar-nav a {
+        justify-content: flex-start;
+        padding: 12px 24px;
+    }
+
+    /* Show hamburger toggle at 1024px too */
+    .sidebar-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: var(--dash-surface);
+        border: 1px solid var(--dash-border);
+        border-radius: 50%;
+        color: var(--clr-primary);
+        cursor: pointer;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 900;
+        box-shadow: var(--shadow-premium);
+    }
+
+    /* Dashboard main takes full width since sidebar is overlay */
+    .dashboard-main {
+        padding: 80px 24px 24px;
+    }
+
+    /* Collapse infographic grid spans to 2 columns */
+    .span-4,
+    .span-6 {
+        grid-column: span 6;
+    }
+
+    .span-8,
+    .span-12 {
+        grid-column: span 12;
+    }
+
+    /* KPI and health cards: 2 columns instead of 4 */
+    .kpi-row,
+    .health-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Sidebar footer icon-only styles when closed */
+    .sidebar-footer a span {
         display: none;
     }
 
-    .sidebar-nav a {
+    .sidebar.active .sidebar-footer a span {
+        display: inline-block !important;
+    }
+
+    .sidebar-footer a {
         justify-content: center;
         padding: 15px 0;
     }
 
-    .sidebar-nav a i {
-        font-size: 1.25rem;
-        margin: 0;
+    .sidebar.active .sidebar-footer a {
+        justify-content: flex-start;
+        padding: 12px 24px;
     }
 }
 
@@ -1784,122 +1871,18 @@ tr:hover {
    Responsive Breakpoints
    ========================================================================== */
 
-/* Tablet & smaller desktops (1024px) */
-@media (max-width: 1024px) {
+/* Tablet & smaller desktops (1024px and above) — layout only */
+@media (max-width: 1280px) {
     .container {
         padding: 0 20px;
     }
 
-    /* --- CLEAN MOBILE MENU RECREATION --- */
-    .header {
-        height: 70px !important;
-    }
-
-    .header.menu-active {
-        position: absolute !important;
-        height: auto !important;
-        transition: none !important;
-        background-color: var(--clr-surface) !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        border-bottom: none !important;
-    }
-
     .nav-container {
-        height: 70px !important;
         padding: 0 20px;
     }
 
-    body {
-        padding-top: 70px !important;
-    }
-
-    .mobile-toggle {
-        display: flex !important;
-    }
-
-    .nav-links {
-        display: none !important; /* Hide explicitly by default on mobile */
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background-color: var(--clr-surface);
-        flex-direction: column;
-        align-items: stretch;
-        padding: 10px 24px 40px !important;
-        gap: 8px !important; /* Add clean vertical spacing rhythm */
-        border: none !important;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-        height: auto !important;
-    }
-
-    .nav-links.active {
-        display: flex !important;
-    }
-
-    .nav-item {
-        width: 100%;
-        margin: 0;
-        display: block !important; /* Stack a and dropdown vertically */
-    }
-
-    .nav-links a {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        width: 100% !important;
-        padding: 12px 0 !important; /* Let spacing separate items */
-        border-bottom: none !important; /* Remove separator line */
-        font-size: 0.95rem;
-    }
-
-    .nav-links a.active,
-    .nav-item.active > a {
-        color: var(--clr-primary) !important;
-        border-bottom: none !important;
-    }
-
-    /* Sub-menu Dropdowns */
-    .nav-links .dropdown {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        padding: 0 0 0 20px;
-        border: none;
-        background: transparent;
-        display: none;
-        min-width: unset;
-    }
-
-    .nav-item.dropdown-active .dropdown {
-        display: block;
-    }
-
-    .nav-item.dropdown-active .fa-chevron-down {
-        transform: rotate(180deg);
-    }
-
-    .nav-item .fa-chevron-down {
-        transition: transform 0.3s ease;
-    }
-
-    .nav-links .dropdown a {
-        padding: 10px 0 !important;
-        font-size: 0.85rem;
-        opacity: 0.8;
-        border-bottom: none !important;
-    }
-
-    .nav-links .dropdown a:last-child {
-        border-bottom: none !important;
-    }
-    /* --- END MOBILE MENU RECREATION --- */
-
     .logo {
-        font-size: 1.75rem;
+        font-size: 1.8rem;
         gap: 8px;
     }
 
@@ -1974,9 +1957,166 @@ tr:hover {
     }
 }
 
-@media (max-width: 768px) {
+/* Desktop nav — shows full navigation on larger screens */
+@media (min-width: 1025px) {
+    .mobile-toggle {
+        display: none !important;
+    }
 
+    .nav-links {
+        display: flex !important;
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        gap: 28px !important;
+        height: 80px !important;
+    }
 
+    .header {
+        height: 80px !important;
+    }
+
+    .nav-container {
+        height: 80px !important;
+    }
+
+    body {
+        padding-top: 0 !important;
+    }
+}
+
+/* Mobile nav — hamburger activates at ≤1024px for better responsive layout */
+@media (max-width: 1024px) {
+    .header {
+        height: 64px !important;
+        position: fixed !important;
+    }
+
+    .header.menu-active {
+        background-color: var(--clr-surface) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: none !important;
+    }
+
+    /* Reset desktop absolute-centering of nav */
+    .nav-container nav {
+        position: static;
+        transform: none;
+    }
+
+    .nav-container {
+        height: 64px !important;
+        padding: 0 20px;
+    }
+
+    body {
+        padding-top: 64px !important;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    /* Show hamburger, hide nav links by default */
+    .mobile-toggle {
+        display: flex !important;
+    }
+
+    .nav-links {
+        display: none !important;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--clr-surface);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 24px 40px !important;
+        gap: 4px !important;
+        border: none !important;
+        box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.55);
+        height: auto !important;
+        z-index: 999;
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+        font-size: 0.95rem !important;
+    }
+
+    .nav-links.active {
+        display: flex !important;
+    }
+
+    /* Restore font size overridden at 1024px */
+    .nav-links a {
+        font-size: 0.95rem !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 13px 0 !important;
+        border-bottom: 1px solid var(--clr-border) !important;
+    }
+
+    .nav-item {
+        width: 100%;
+        margin: 0;
+        display: block !important;
+    }
+
+    .nav-links a.active,
+    .nav-item.active > a {
+        color: var(--clr-primary) !important;
+        border-bottom: 1px solid var(--clr-border) !important;
+        padding-bottom: 13px !important;
+    }
+
+    /* Mobile sub-menu dropdowns */
+    .nav-links .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        padding: 0 0 0 20px;
+        border: none;
+        background: transparent;
+        display: none;
+        min-width: unset;
+    }
+
+    .nav-item.dropdown-active .dropdown {
+        display: block;
+    }
+
+    .nav-item.dropdown-active .fa-chevron-down {
+        transform: rotate(180deg);
+    }
+
+    .nav-item .fa-chevron-down {
+        transition: transform 0.3s ease;
+    }
+
+    .nav-links .dropdown a {
+        padding: 10px 0 !important;
+        font-size: 0.85rem;
+        opacity: 0.8;
+        border-bottom: none !important;
+    }
+
+    .nav-links .nav-btn {
+        margin-top: 8px;
+        text-align: center;
+        border-radius: var(--border-radius) !important;
+        justify-content: center !important;
+    }
+
+    .nav-links .nav-signup {
+        background: var(--clr-primary) !important;
+        color: #fff !important;
+    }
+
+    /* ---- layout rules that also apply at ≤768px ---- */
     .sidebar.active {
         transform: translateX(0);
     }
@@ -1984,8 +2124,6 @@ tr:hover {
     .container {
         padding: 0 16px;
     }
-
-
 
     .grid {
         gap: 20px;

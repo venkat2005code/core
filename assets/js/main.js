@@ -3,12 +3,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
 
+    // Create backdrop element for mobile menu
+    const navBackdrop = document.createElement('div');
+    navBackdrop.id = 'navBackdrop';
+    navBackdrop.style.cssText = `
+        display: none;
+        position: fixed;
+        inset: 64px 0 0 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 998;
+        backdrop-filter: blur(2px);
+    `;
+    document.body.appendChild(navBackdrop);
+
+    const closeMenu = () => {
+        navLinks.classList.remove('active');
+        navBackdrop.style.display = 'none';
+        const header = document.querySelector('.header');
+        if (header) header.classList.remove('menu-active');
+        const icon = mobileToggle ? mobileToggle.querySelector('i') : null;
+        if (icon) { icon.className = 'fa-solid fa-bars'; }
+    };
+
     if (mobileToggle && navLinks) {
         mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            const isOpen = navLinks.classList.toggle('active');
+            navBackdrop.style.display = isOpen ? 'block' : 'none';
             const header = document.querySelector('.header');
-            if (header) header.classList.toggle('menu-active');
+            if (header) header.classList.toggle('menu-active', isOpen);
+            const icon = mobileToggle.querySelector('i');
+            if (icon) icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
         });
+
+        navBackdrop.addEventListener('click', closeMenu);
     }
 
     // Active Link Highlighting (Issue 18)
@@ -75,9 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.toggle('active');
         });
 
-        // Close sidebar when clicking outside on mobile
+        // Close sidebar when clicking outside (tablet + mobile)
         document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768 && sidebar.classList.contains('active') && !sidebar.contains(e.target)) {
+            if (window.innerWidth <= 1024 && sidebar.classList.contains('active') && !sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
                 sidebar.classList.remove('active');
             }
         });
