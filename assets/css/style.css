@@ -812,13 +812,22 @@ textarea.form-control {
     /* Ensures consistent block height */
 }
 
+/* Ensure contents of .hero are above the .hero::before overlay */
+.hero > .container {
+    position: relative;
+    z-index: 2;
+}
+
 /* Force hero text to always be white for contrast over any background image */
+.hero h1,
+.hero p,
 .hero-content h1,
 .hero-content p {
     color: #ffffff !important;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
+.hero .hero-subtitle,
 .hero-content .hero-subtitle {
     color: #7EC8FF !important;
     text-shadow: 0 0 24px rgba(59, 130, 246, 0.7);
